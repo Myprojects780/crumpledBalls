@@ -1,4 +1,5 @@
 
+
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
@@ -12,9 +13,6 @@ function preload()
 	
 }
 
-  
-//change
-
 function setup() {
 	createCanvas(800, 700);
 
@@ -25,10 +23,11 @@ function setup() {
 	ellipseMode(RADIUS)
 	//Create the Bodies Here.
 	var ball_options={
-		restitution:0.7
-		
+		restitution:0.1,
+		friction:0,
+	
 	  }
-	  ball=Bodies.circle(200,50,30,ball_options)
+	  ball=Bodies.circle(100,300,10,ball_options)
 	  World.add(world,ball)
 	Engine.run(engine);
   mainGround=new Ground(400,500,800,3);
@@ -39,20 +38,18 @@ function setup() {
 
 function draw() {
   rectMode(CENTER);
+  
   background(0);
   mainGround.show()
   leftground.show()
   rightground.show()
 
 if (keyWentDown("space")){
-	Matter.Body.applyForce(ball,{x:0,y:0},{x:0.08,y:-0.03})
+	Matter.Body.applyForce(ball,{x:0,y:0},{x:0.01,y:-0.012})
 }
-  ellipse(ball.position.x,ball.position.y,30)
+  ellipse(ball.position.x,ball.position.y,10)
 }
 function mousePressed(){
-	Matter.Body.applyForce(ball,{x:0,y:0},{x:0.05,y:-0.05})
+	Matter.Body.applyForce(ball,{x:0,y:0},{x:0.0005,y:-0.05})
 
 }
-
-
-
